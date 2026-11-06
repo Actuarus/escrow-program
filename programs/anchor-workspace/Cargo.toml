@@ -1,0 +1,41 @@
+[package]
+name = "anchor-workspace"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+rust-version = "1.84"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "anchor_workspace"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+# Réseau du build, à choisir explicitement (exactement une des deux, audit A12) : clés de la plateforme (payeur,
+# trésorerie et arbitre) et jetons acceptés (USDC, EURC) du devnet ou du mainnet.
+devnet = []
+mainnet = []
+# Tests sur validateur local : trésorerie de test qui signe elle-même (au lieu du vault Squads) ; build devnet.
+test-treasury = ["devnet"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+
+[dependencies]
+anchor-lang = { version = "0.32.1", features = ["init-if-needed"] }
+# Jeton SPL classique et comptes associés (USDC et EURC) ; `token_2022` est exigé par les contraintes `token::` et
+# `associated_token::` d'Anchor, ses extensions ne le sont pas.
+anchor-spl = { version = "0.32.1", default-features = false, features = ["token", "token_2022", "associated_token"] }
+# Section « security.txt » du binaire : contact de sécurité lisible par les explorateurs (Solscan, Solana Explorer).
+solana-security-txt = "1.1.1"
+
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
+

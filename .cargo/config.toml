@@ -1,0 +1,3 @@
+# Les dépendances doivent rester compatibles avec la chaîne Solana (platform-tools v1.48 : Rust 1.84).
+[resolver]
+incompatible-rust-versions = "fallback"
