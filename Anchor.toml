@@ -8,6 +8,10 @@ skip-lint = false
 [programs.devnet]
 anchor_workspace = "DNwHyasEkHQYfswjPAxvnudCgN1gdZuHA2y2TSp8GVXE"
 
+# Même adresse sur mainnet (déployé le 05/11/2026, autorité de mise à jour : vault Squads 48 h).
+[programs.mainnet]
+anchor_workspace = "DNwHyasEkHQYfswjPAxvnudCgN1gdZuHA2y2TSp8GVXE"
+
 [registry]
 url = "https://api.apr.dev"
 
